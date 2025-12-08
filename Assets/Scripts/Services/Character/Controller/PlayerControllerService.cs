@@ -1,58 +1,49 @@
 using System;
 using Services.Camera;
 using Services.Character.Hands;
+using Services.Character.Hands.Grab;
+using Services.Character.Motion;
 using Services.Devices;
+using Services.Input;
 using Services.Loop;
-using TMPro;
 using UniRx;
-using UnityEngine;
-using UnityEngine.XR;
-using Zenject;
 
 namespace Services.Character.Controller
 {
-    public class PlayerControllerService : IPlayerControllerService, IEveryUpdate, IDisposable
+    public class PlayerControllerService : IPlayerControllerService, IEveryUpdate, IEveryLateUpdate
     {
-        private readonly IDevicesService _devices;
+        private readonly IInputService _input;
         private readonly IPlayerCameraService _camera;
-        private readonly IPlayerHandsService _hands;
-
-        private readonly CompositeDisposable _disposable = new();
+        private readonly IPlayerMotionService _motion;
+        private readonly IHandsMotionService _handsMotion;
+        private readonly IHandsGrabService _handsGrab;
 
         public PlayerControllerService
         (
-            IDevicesService devices,
+            IInputService input,
             IPlayerCameraService camera,
-            IPlayerHandsService hands
+            IPlayerMotionService motion,
+            IHandsMotionService handsMotion,
+            IHandsGrabService handsGrab
         )
         {
-            _devices = devices;
+            _input = input;
             _camera = camera;
-            _hands = hands;
-
-            Subscribe();
+            _motion = motion;
+            _handsMotion = handsMotion;
+            _handsGrab = handsGrab;
         }
-
-        private void Subscribe()
-        {
-            _devices.OnDeviceConnected
-                .Subscribe(device =>
-                {
-                    _camera.SetDevice(device);
-                    _hands.SetDevice(device);
-                })
-                .AddTo(_disposable);
-        }
-
+        
         public void Update()
         {
-            _camera.UpdateTransform();
-            _hands.UpdateTransform();
+            _motion.UpdateTransform(_input.MovementDirection);
+            _handsMotion.UpdateTransform(_input.RHandTransform, _input.LHandTransform);
+            _handsGrab.Update();
         }
 
-        public void Dispose()
+        public void LateUpdate()
         {
-            _disposable.Dispose();
+            _camera.UpdateTransform(_input.CameraTransform);
         }
     }
 }

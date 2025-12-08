@@ -1,11 +1,11 @@
+using Services.Input;
+using UnityEngine;
 using UnityEngine.XR;
 
 namespace Services.Camera
 {
     public interface IPlayerCameraService
     {
-        public void SetDevice(InputDevice device);
-
-        public void UpdateTransform();
+        public void UpdateTransform(DeviceTransform transform);
     }
 }

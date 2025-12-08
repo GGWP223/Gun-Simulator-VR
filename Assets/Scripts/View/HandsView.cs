@@ -7,5 +7,6 @@ namespace View
     {
         [field: SerializeField] public Transform LHand { get; private set; }
         [field: SerializeField] public Transform RHand { get; private set; }
+        [field: SerializeField] public Vector3 Offset { get; private set; }
     }
 }

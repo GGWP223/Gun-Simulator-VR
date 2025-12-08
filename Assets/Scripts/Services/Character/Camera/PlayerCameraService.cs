@@ -1,40 +1,27 @@
-using UnityEngine;
-using UnityEngine.XR;
+using Services.Input;
 using View;
-using Zenject;
 
 namespace Services.Camera
 {
     public class PlayerCameraService : IPlayerCameraService
     {
-        private readonly CameraView _view;
-        
-        private InputDevice _device;
+        private readonly CameraView _camera;
+        private readonly PlayerView _player;
 
         public PlayerCameraService
         (
-            CameraView view
+            CameraView camera,
+            PlayerView player
         )
         {
-            _view = view;
+            _camera = camera;
+            _player = player;
         }
 
-        public void SetDevice(InputDevice device)
+        public void UpdateTransform(DeviceTransform transform)
         {
-            if((device.characteristics & InputDeviceCharacteristics.HeadMounted) != 0)
-                _device = device;
-        }
-
-        public void UpdateTransform()
-        {
-            if(!_device.isValid)
-                return;
-            
-            if(_device.TryGetFeatureValue(CommonUsages.devicePosition, out var position))
-                _view.transform.position = position;
-            
-            if(_device.TryGetFeatureValue(CommonUsages.deviceRotation, out var rotation))
-                _view.transform.rotation = rotation;
+            _camera.CameraComponent.transform.position = transform.Position + _player.transform.position;
+            _camera.CameraComponent.transform.rotation = transform.Rotation;
         }
     }
 }

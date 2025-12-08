@@ -10,6 +10,7 @@ namespace Installers
         {
             Bind<CameraView>();
             Bind<HandsView>();
+            Bind<PlayerView>();
         }
 
         private void Bind<T>() where T : MonoBehaviour

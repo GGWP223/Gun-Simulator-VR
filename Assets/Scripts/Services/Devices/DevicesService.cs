@@ -32,13 +32,13 @@ namespace Services.Devices
 
         private void OnDevicesConnected(InputDevice device)
         {
-            Debug.Log($"{device.characteristics} connected");
+            // Debug.Log($"{device.characteristics} connected");
             OnDeviceConnected.Execute(device);
         }
 
         private void OnDevicesDisconnected(InputDevice device)
         {
-            Debug.Log($"{device.characteristics} disconnected");
+            // Debug.Log($"{device.characteristics} disconnected");
             OnDeviceDisconnected?.Execute(device);
         }
 
