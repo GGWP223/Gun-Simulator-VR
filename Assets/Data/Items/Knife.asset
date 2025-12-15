@@ -12,21 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45a193d2c4364b6498d076e1cccc0e6c, type: 3}
   m_Name: Knife
   m_EditorClassIdentifier: 
-  <PositionOffset>k__BackingField: {x: -0.01, y: 0.01, z: 0.09}
-  <RotationOffset>k__BackingField: {x: 280.1, y: 317.4, z: 20.2}
-  Fingers:
-  - <Type>k__BackingField: 0
-    <Position>k__BackingField: {x: 111.3, y: 37.27, z: 59.93}
-    <Rotation>k__BackingField: {x: 8.71, y: 0, z: 0}
-  - <Type>k__BackingField: 1
-    <Position>k__BackingField: {x: -17.7, y: 0.92, z: 0}
-    <Rotation>k__BackingField: {x: 2.49, y: 0, z: 0}
-  - <Type>k__BackingField: 2
-    <Position>k__BackingField: {x: 0, y: 0, z: 0}
-    <Rotation>k__BackingField: {x: 0, y: 0, z: 0}
-  - <Type>k__BackingField: 3
-    <Position>k__BackingField: {x: 0, y: 0, z: 0}
-    <Rotation>k__BackingField: {x: 0, y: 0, z: 0}
-  - <Type>k__BackingField: 4
-    <Position>k__BackingField: {x: 0, y: 0, z: 0}
-    <Rotation>k__BackingField: {x: 0, y: 0, z: 0}
+  <PositionOffset>k__BackingField: {x: -0.01, y: -0.01, z: 0.02}
+  <RotationOffset>k__BackingField: {x: 0, y: -58.9, z: 90}
+  <AnimationType>k__BackingField: 0
