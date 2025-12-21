@@ -4,6 +4,6 @@ namespace DI.View
 {
     public class PlayerView : MonoBehaviour
     {
-        [field: SerializeField] public CharacterController Controller { get; private set; }
+        [field: SerializeField] public CapsuleCollider Collider { get; private set; }
     }
 }

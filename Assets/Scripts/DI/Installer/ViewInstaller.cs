@@ -9,6 +9,9 @@ namespace DI.Installers
         public override void InstallBindings()
         {
             Bind<PlayerView>();
+            Bind<PlayerHandView>();
+            Bind<PlayerHeadView>();
+            Bind<PlayerRiggingView>();
         }
         
         private void Bind<T>() where T : MonoBehaviour
